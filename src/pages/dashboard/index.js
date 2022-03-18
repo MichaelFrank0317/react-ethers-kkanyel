@@ -10,7 +10,6 @@ import NodeContract from "../../contracts/Node/NodeContract";
 import CorkContract, { ApproveType } from "../../contracts/Cork/CorkContract";
 import { slopeInfo } from '../../config/slopeInfo';
 import { useEffect, useState } from "react";
-import { computeHeadingLevel } from '@testing-library/react';
 
 const Dashboard = () => {
   const [slopes, setSlopes] = useState([]);
@@ -18,10 +17,14 @@ const Dashboard = () => {
   const [compoundRewards, setCompoundRewards] = useState(0);
   const [compoundNodeId, setCompoundNodeId] = useState(0);
 
-  useEffect(async () => {
+  useEffect(() => {
+    fetchSlopes();
+  }, [])
+
+  const fetchSlopes = async () => {
     const result = await NodeContract.getInstance().getSlopes();
     setSlopes(result);
-  }, [])
+  }
 
   const handleNodeApprove = async () => {
     await CorkContract.getInstance().approve(ApproveType.Node);
