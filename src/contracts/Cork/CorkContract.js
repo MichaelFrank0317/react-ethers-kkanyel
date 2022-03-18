@@ -30,7 +30,6 @@ const CorkContract = (function () {
             let result = null;
             const contract = await this.contract.getContract();
             const amount = ethers.utils.parseEther("2000");
-            console.log(amount);
             if(approveType === ApproveType.Node)
                 result = await contract.approve(Address.node, amount);
             if(approveType === ApproveType.Swap)

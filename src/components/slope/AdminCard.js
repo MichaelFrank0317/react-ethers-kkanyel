@@ -1,18 +1,20 @@
 import SlopeButton from "./SlopeButton";
 
-const SlopeAdminCard = () => {
+const SlopeAdminCard = ({slopes, handleClaimAll}) => {
   return (
     <div className="slope-admin-card">
       <div className="card-title">{"Slope Admin"}</div>
       <div className="reward">
         <div className="reward-item">{"CORK REWARDS"}</div>
-        <div className="reward-amount">{"1,214.54"}</div>
+        <div className="reward-amount">{slopes.reduce((prev, slope) => {
+          return prev + parseFloat(slope.rewards)
+        }, 0)}</div>
       </div>
       <div className="stats">
         <div className="flex">
           <div>
             <div className="stats-item">{"SLOPES"}</div>
-            <div className="stats-amount">{`4`}</div>
+            <div className="stats-amount">{slopes.length}</div>
           </div>
           <div>
             <div className="stats-item">{"DAILY YIELD"}</div>
@@ -32,12 +34,12 @@ const SlopeAdminCard = () => {
       </div>
       <div className="claim-field">
         <div className="input-field">
-          <input placeholder="Rewards to claim" />
+          <input disabled placeholder="Rewards to claim" />
           <button className="max-btn">{"MAX"}</button>
         </div>
-        <button className="claim-btn">{"Claim Rewards"}</button>
+        <button onClick={handleClaimAll} className="claim-btn">{"Claim Rewards"}</button>
       </div>
-      <SlopeButton dark fullWidth>
+      <SlopeButton disabled dark fullWidth>
         {"Compound All Slopes"}
       </SlopeButton>
     </div>

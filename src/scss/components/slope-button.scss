@@ -18,6 +18,10 @@
   }
 }
 
+.slope-button.disabled {
+  background-color: gray !important;
+}
+
 .slope-button.dark {
   background-color: #333333;
   color: #f1f2f4;

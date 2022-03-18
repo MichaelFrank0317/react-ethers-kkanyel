@@ -25,3 +25,49 @@
 .text-white {
   color: #ffffff;
 }
+
+.text-center {
+  text-align: center;
+}
+
+.modal-slope-item-wrapper {
+  display: flex;
+  align-items: center;
+
+  * {
+    display: inline-block;
+  }
+
+  .item {
+    margin: 2px 0px 2px 0px;
+    * {
+      margin-left: auto;
+      margin-right: auto;
+      display: block;
+    }
+  }
+
+  .image {
+    width: 50px;
+  }
+
+  .rewards {
+    width: 120px;
+  }
+
+  .tool-button {
+    width: 60px;
+
+    button {
+      width: 100%;
+    }
+  }
+
+  .cork {
+    width: 50px;
+  }
+
+  .amount {
+    width: 200px;
+  }
+}

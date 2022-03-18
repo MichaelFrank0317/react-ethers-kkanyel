@@ -1,31 +1,59 @@
+import 'react-responsive-modal/styles.css';
+import { Modal } from 'react-responsive-modal';
 
 import SlopeCard from "../../components/slope/SlopeCard";
 import SlopeButton from "../../components/slope/SlopeButton";
 import GeneralButton from "../../components/general/GeneralButton";
 import SlopeAdminCard from "../../components/slope/AdminCard";
 
+import NodeContract from "../../contracts/Node/NodeContract";
 import CorkContract, { ApproveType } from "../../contracts/Cork/CorkContract";
-import {slopeData} from "../../mock/dashboard";
+import { slopeInfo } from '../../config/slopeInfo';
+import { useEffect, useState } from "react";
+import { computeHeadingLevel } from '@testing-library/react';
 
 const Dashboard = () => {
+  const [slopes, setSlopes] = useState([]);
+  const [open, setOpen] = useState(false);
+  const [compoundRewards, setCompoundRewards] = useState(0);
+  const [compoundNodeId, setCompoundNodeId] = useState(0);
+
+  useEffect(async () => {
+    const result = await NodeContract.getInstance().getSlopes();
+    setSlopes(result);
+  }, [])
 
   const handleNodeApprove = async () => {
-    const result = await CorkContract.getInstance().approve(ApproveType.Node);
-    console.log(result);
+    await CorkContract.getInstance().approve(ApproveType.Node);
   }
 
   const handleSwapApprove = async () => {
-    const result = await CorkContract.getInstance().approve(ApproveType.Swap);
-    console.log(result);
+    await CorkContract.getInstance().approve(ApproveType.Swap);
+  }
+
+  const handleClose = () => {
+    setOpen(false);
   }
 
   const handleCompound = (index) => {
-    console.log(index);
+    const slope = slopes[index];
+    setCompoundNodeId(slope.id);
+    setCompoundRewards(slope.rewards);
+    setOpen(true);
   };
 
-  const handleClaim = (index) => {
-    console.log(index);
+  const handleCompoundMint = async (nodeType) => {
+    await NodeContract.getInstance().bailOutMint(nodeType, [compoundNodeId]);
+  }
+
+  const handleClaim = async (nodeId) => {
+    await NodeContract.getInstance().claimRewardsById(nodeId);
+    setOpen(false);
   };
+
+  const handleClaimAll = async(amount) => {
+    await NodeContract.getInstance().claimAll();
+  }
 
   return (
     <div className="page-dashboard">
@@ -65,34 +93,57 @@ const Dashboard = () => {
 
         </div>
         <div className="cards">
-          <SlopeAdminCard />
+          <SlopeAdminCard slopes={slopes} handleClaimAll={handleClaimAll} />
           <div className="all-scope-card">
             <div className="title">{"All Slopes"}</div>
-            <table>
-              <thead>
-                <tr>
-                  <th>{"TIER"}</th>
-                  <th>{"DAILY YIELD"}</th>
-                  <th>{"REWARDS"}</th>
-                  <th>{"COMPOUND"}</th>
-                  <th>{"CLAIM"}</th>
-                </tr>
-              </thead>
-                <tbody>
-                  {slopeData.map((data, index) => (
-                    <tr key={index} className={"type" + index}>
-                      <td><img src={data.imgSrc} alt="img" /></td>
-                      <td>{data.dailyYield}</td>
-                      <td>{data.reward}</td>
-                      <td><SlopeButton onClick={() => handleCompound(data.index)} dark>{"Compound Rewards"}</SlopeButton></td>
-                      <td><SlopeButton onClick={() => handleClaim()}>{"Claim Rewards"}</SlopeButton></td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
+              <table>
+                <thead>
+                  <tr>
+                    <th>{"TIER"}</th>
+                    <th>{"DAILY YIELD"}</th>
+                    <th>{"REWARDS"}</th>
+                    <th>{"COMPOUND"}</th>
+                    <th>{"CLAIM"}</th>
+                  </tr>
+                </thead>
+                  <tbody>
+                    {slopes.map((slope, index) => (
+                      <tr key={index} className={"type" + slope.nodeType}>
+                        <td><img src={slopeInfo[slope.nodeType].imgSrc} alt="img" /></td>
+                        <td>{slopeInfo[slope.nodeType].dailyYield}</td>
+                        <td>{slope.rewards}</td>
+                        <td><SlopeButton onClick={() => handleCompound(index)} dark>{"Compound Rewards"}</SlopeButton></td>
+                        <td><SlopeButton onClick={() => handleClaim(slope.id)}>{"Claim Rewards"}</SlopeButton></td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+            </div>
           </div>
-        </div>
       </div>
+      <Modal open={open} onClose={handleClose}>
+        <div className="all-scope-card">
+          <h2 className="title">{"Available Nodes"}</h2>
+          <div className={`modal-slope-item-wrapper`}>
+            <span className="item image text-center">{"TIER"}</span>
+            <span className="item cork text-center">{"CORK"}</span>
+            <span className="item rewards text-center">{"DAILY YIELD"}</span>
+            <span className="item amount text-center">{"AMOUNT"}</span>
+            <span className="item tool-button text-center">{"BUY"}</span>
+          </div>
+          {slopeInfo.filter((slope) => slope.cork < compoundRewards).map((slope, index) => (
+            <div key={index} className={`${'type' + index} modal-slope-item-wrapper`}>
+              <span className="item image"><img src={slope.imgSrc} alt="img" /></span>
+              <span className="item cork text-center">{slope.cork}</span>
+              <span className="item rewards text-center">{slope.dailyYield}</span>
+              <span className="item amount text-center">{slope.amount}</span>
+              <span className="item tool-button">
+                <SlopeButton onClick={() => handleCompoundMint(index)} dark>{"Buy"}</SlopeButton>
+              </span>
+            </div>
+          ))}
+        </div>
+      </Modal>
     </div>
   );
 };
