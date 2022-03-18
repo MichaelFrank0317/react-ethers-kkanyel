@@ -2,6 +2,6 @@ import getProvider from './ethers';
 
 export const getWalletAddress = async () => {
     const [, signer] = await getProvider();
-    const addsress = await signer.getAddress();
+    const address = await signer.getAddress();
     return address;
 }
