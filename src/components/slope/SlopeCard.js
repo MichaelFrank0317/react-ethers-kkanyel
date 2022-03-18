@@ -11,7 +11,7 @@ const Slope = ({ type, index }) => {
     <div className={"slope " + type}>
       <div className="header">
         <div className="header-title">
-          <img src={slopeInfo[index].imgSrc} />
+          <img src={slopeInfo[index].imgSrc} alt="slope" />
           {slopeInfo[index].title}
         </div>
         <div>{slopeInfo[index].amount}</div>

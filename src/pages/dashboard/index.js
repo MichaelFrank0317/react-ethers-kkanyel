@@ -81,7 +81,7 @@ const Dashboard = () => {
                 <tbody>
                   {slopeData.map((data, index) => (
                     <tr key={index} className={"type" + index}>
-                      <td><img src={data.imgSrc} /></td>
+                      <td><img src={data.imgSrc} alt="img" /></td>
                       <td>{data.dailyYield}</td>
                       <td>{data.reward}</td>
                       <td><SlopeButton onClick={() => handleCompound(data.index)} dark>{"Compound Rewards"}</SlopeButton></td>
