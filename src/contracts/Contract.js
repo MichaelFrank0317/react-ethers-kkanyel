@@ -10,7 +10,7 @@ function Contract (address, abi) {
     this.contract = null;
 
     this.getContract = async () => {
-        const [provider, signer] = await getProvider();
+        const [, signer] = await getProvider();
         if(!this.contract)
             this.contract = new ethers.Contract(this.address, this.abi, signer);
         return this.contract;

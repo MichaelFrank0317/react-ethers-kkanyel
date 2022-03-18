@@ -41,8 +41,8 @@ const NavBar = () => {
         </div>
         <div className="flex justify-center items-center">
           <div className="social-icons">
-            <a href="#"><img src={ location.pathname === "/" ? imageSrc.icons.discord : imageSrc.icons.discordLight} alt="discord"/></a>
-            <a href="#"><img src={ location.pathname === "/" ? imageSrc.icons.twitter : imageSrc.icons.twitterLight } alt="twitter"/></a>
+            <a href="/"><img src={ location.pathname === "/" ? imageSrc.icons.discord : imageSrc.icons.discordLight} alt="discord"/></a>
+            <a href="/"><img src={ location.pathname === "/" ? imageSrc.icons.twitter : imageSrc.icons.twitterLight } alt="twitter"/></a>
           </div>
 
           {location.pathname === "/" ? (
