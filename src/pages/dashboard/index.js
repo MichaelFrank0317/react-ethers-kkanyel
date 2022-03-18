@@ -10,12 +10,12 @@ import {slopeData} from "../../mock/dashboard";
 const Dashboard = () => {
 
   const handleNodeApprove = async () => {
-    const result = await CorkContract.getInstance().approve(ApproveType.Node, 20);
+    const result = await CorkContract.getInstance().approve(ApproveType.Node);
     console.log(result);
   }
 
   const handleSwapApprove = async () => {
-    const result = await CorkContract.getInstance().approve(ApproveType.Swap, 20);
+    const result = await CorkContract.getInstance().approve(ApproveType.Swap);
     console.log(result);
   }
 

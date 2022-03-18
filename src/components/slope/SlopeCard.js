@@ -4,6 +4,7 @@ import NodeContract from '../../contracts/Node/NodeContract';
 const Slope = ({ type, index }) => {
   const handleBuySlope = async () => {
     const result = await NodeContract.getInstance().mint(index, "https://corkscrew.com");
+    // const result = await NodeContract.getInstance().getCorkPrice();
     console.log(result);
   }
 

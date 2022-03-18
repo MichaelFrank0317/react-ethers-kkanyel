@@ -19,6 +19,7 @@ const NodeContract = (function () {
         this.contract = new Contract(Address.node, NodeContractAbi);
 
         /**
+         * mint slope
          * 
          * @param {uint256} nodeType  0(Blue) | 1(Red) | 2(Black) | 3(Double Black Diamond)
          * @param {string} uri temporary uri
@@ -28,7 +29,21 @@ const NodeContract = (function () {
             let result = null;
             const contract = await this.contract.getContract();
             console.log(contract);
+            console.log(nodeType);
+            // const options = {value: ethers.utils.parseEther("4.0")}
             result = await contract.mint(nodeType, uri);
+            return result;
+        }
+
+        /**
+         * get cork price
+         * 
+         * @returns 
+         */
+        this.getCorkPrice = async () => {
+            let result = null;
+            const contract = await this.contract.getContract();
+            result = await contract.getCorkPrice();
             return result;
         }
     }

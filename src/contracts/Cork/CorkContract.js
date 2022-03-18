@@ -1,3 +1,4 @@
+import { ethers } from 'ethers';
 import Contract from '../Contract';
 
 import Address from '../config/address';
@@ -25,10 +26,11 @@ const CorkContract = (function () {
          * @param {uint256} amount               the amount to approve
          * @returns the result of the function
          */
-        this.approve = async (approveType, amount) => {
+        this.approve = async (approveType) => {
             let result = null;
             const contract = await this.contract.getContract();
-            console.log(contract);
+            const amount = ethers.utils.parseEther("2000");
+            console.log(amount);
             if(approveType === ApproveType.Node)
                 result = await contract.approve(Address.node, amount);
             if(approveType === ApproveType.Swap)
