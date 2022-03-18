@@ -1,0 +1,7 @@
+const address = {
+    node: '0x1eDC09758848c1F31dD19847957FdAc35A821900',
+    cork: '0x5C4590267620B8031fA76d983D119a2422320640',
+    swap: '0x34EaD6fE4eCa0CD50C37D9c4d5B750e0A2Ce8f76'
+}
+
+export default address;

@@ -1,0 +1,122 @@
+.slope {
+  border-style: solid;
+  border-width: 6px 0 3px 0;
+  background-color: #ffffff;
+  padding: 20px;
+  width: 280px;
+  margin-top: 20px;
+  .header {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(51, 51, 51, 0.15);
+
+    .header-title {
+      font-size: 24px;
+      line-height: 20px;
+      font-weight: 700;
+      letter-spacing: -4%;
+      display: flex;
+      align-items: center;
+      img {
+        margin-right: 3px;
+      }
+    }
+
+    .amount {
+      font-size: 16px;
+      line-height: 20px;
+      font-weight: 700;
+    }
+  }
+
+  .cork {
+    display: flex;
+    align-items: flex-end;
+    padding-top: 10px;
+
+    .cork-amount {
+      font-weight: 700;
+      font-size: 72px;
+      line-height: 72px;
+      background-color: #000000;
+      color: transparent;
+      text-shadow: 0px 0px 4px rgb(255, 255, 255);
+      -webkit-background-clip: text;
+      -moz-background-clip: text;
+      background-clip: text;
+    }
+    .cork-text {
+      margin: 0 0 10px 5px;
+      color: #333333;
+      font-weight: 700;
+      font-size: 16px;
+      line-height: 20px;
+    }
+  }
+
+  .buy-btn {
+    width: 100%;
+    background-color: #333333;
+    border-radius: 8px;
+    padding: 8px;
+    color: #ffffff;
+    margin-top: 20px;
+    border: none;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 15.62px;
+    transition: all 0.4s;
+    cursor: pointer;
+    &:hover {
+      background-color: #e78130;
+    }
+  }
+}
+
+.slope.blue {
+  border-color: #0070c0;
+  .header {
+    color: #0070c0;
+  }
+}
+
+.slope.red {
+  border-color: #b23232;
+  .header {
+    color: #b23232;
+  }
+}
+
+.slope.black,
+.slope.doubleBlack {
+  border-color: #000000;
+  .header {
+    color: #000000;
+  }
+}
+
+.stats {
+  border-top: 1px solid rgba(51, 51, 51, 0.15);
+  border-bottom: 1px solid rgba(51, 51, 51, 0.15);
+  padding: 15px 0;
+  color: #333333;
+
+  & > div > div {
+    width: 50%;
+  }
+
+  .stats-item {
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 700;
+    letter-spacing: 1%;
+    opacity: 0.4;
+  }
+
+  .stats-amount {
+    font-weight: 700;
+    font-size: 32px;
+    letter-spacing: -4%;
+  }
+}

@@ -1,0 +1,121 @@
+.page-presale {
+  overflow-x: hidden;
+  background-image: url("../../assets/images/background/home.jfif");
+  min-height: 100vh;
+  background-size: 100% 100%;
+  padding: 200px 20px 20px;
+  display: flex;
+  justify-content: space-around;
+  gap: 20px;
+  @media screen and (max-width: 767px) {
+    flex-direction: column;
+    padding-top: 100px;
+  }
+
+  .information {
+    max-width: 650px;
+    padding-bottom: 30px;
+    .information-title {
+      color: #333333;
+      font-weight: 700;
+      font-size: 60px;
+      line-height: 55px;
+      letter-spacing: -4%;
+      margin-top: 10px;
+      margin-bottom: 30px;
+      @media screen and (max-width: 1100px) {
+        font-size: 40px;
+        line-height: 35px;
+      }
+      @media screen and (max-width: 620px) {
+        font-size: 28px;
+        line-height: 25px;
+      }
+    }
+    .button {
+      margin-top: 30px;
+    }
+  }
+
+  .exchange {
+    max-width: 550px;
+    @media screen and (max-width: 1220px) {
+      max-width: 650px;
+    }
+    .exchange-title {
+      background: #e78130;
+      padding: 25px;
+      font-size: 24px;
+      line-height: 20px;
+      font-weight: 700;
+      letter-spacing: -4%;
+      color: #ffffff;
+      border-radius: 8px 8px 0 0;
+    }
+
+    .content {
+      background-image: linear-gradient(#ffffff 0%, #e8e8e8 100%);
+      padding: 20px;
+      box-shadow: 0px 4px rgba(0, 0, 0, 0.16);
+
+      .time-remaining {
+        display: flex;
+        justify-content: space-between;
+        font-size: 12px;
+        line-height: 24px;
+        font-weight: 700;
+        letter-spacing: 5%;
+        color: rgba(51, 51, 51, 0.6);
+        padding-bottom: 10px;
+        border-bottom: 1px solid rgba(51, 51, 51, 0.6);
+      }
+
+      .enter-text {
+        font-weight: 700;
+        font-size: 32px;
+        line-height: 38px;
+        letter-spacing: -4%;
+        margin: 40px 0 30px;
+        color: #1b1616;
+
+        @media screen and (max-width: 1100px) {
+          font-size: 20px;
+          line-height: 22px;
+        }
+
+        @media screen and (max-width: 500px) {
+          font-size: 18px;
+          line-height: 20px;
+        }
+      }
+
+      .form-field {
+        display: flex;
+        margin-bottom: 30px;
+
+        .input {
+          width: 100%;
+          border-radius: 40px 0 0 40px;
+          border: 1px solid rgba(51, 51, 51, 0.6);
+          padding: 10px;
+          &::placeholder {
+            text-align: right;
+          }
+        }
+
+        .button {
+          background: #333333;
+          color: #ffffff;
+          border-radius: 0 40px 40px 0;
+          width: 150px;
+          border: none;
+          transition: all 0.4s;
+          cursor: pointer;
+          &:hover {
+            background-color: #e78130;
+          }
+        }
+      }
+    }
+  }
+}
